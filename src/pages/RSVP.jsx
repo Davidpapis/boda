@@ -100,7 +100,7 @@ const RSVP = () => {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
+            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
         }
     };
 
@@ -108,8 +108,8 @@ const RSVP = () => {
         return (
             <div className="rsvp-page success-view" style={{ 
                 backgroundColor: '#F9F7F2',
-                backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.9), rgba(249, 247, 242, 0.95)), url(${marbleBg})`,
-                backgroundAttachment: 'fixed',
+                backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.94), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
+                backgroundSize: '400px repeat',
                 display: 'flex',
                 flexDirection: 'column',
                 height: 'calc(100vh - 80px)', 
@@ -165,10 +165,10 @@ const RSVP = () => {
 
     return (
         <div className="rsvp-page" style={{ 
-            backgroundColor: '#F9F7F2', // warm off-white (blanco roto)
-            backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.95), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: '300px'
+            backgroundColor: '#F9F7F2',
+            backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.96), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
+            backgroundSize: '400px repeat',
+            backgroundPosition: 'center top'
         }}>
             <div className="nav-spacer"></div>
             
@@ -176,7 +176,7 @@ const RSVP = () => {
                 <motion.div 
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     className="container"
                 >
                     <span className="section-subtitle block text-center italic">R.S.V.P.</span>
@@ -277,8 +277,10 @@ const RSVP = () => {
 
                                 {formData.attendance === 'yes' && (
                                     <motion.div 
+                                        layout
                                         initial={{ opacity: 0, height: 0 }}
                                         animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
                                         className="attendance-details"
                                     >
                                         {/* Accompagnatore Selector */}
@@ -302,6 +304,7 @@ const RSVP = () => {
 
                                             {formData.hasCompanion === 'yes' && (
                                                 <motion.div 
+                                                    layout
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     className="companions-list m-t-20"
@@ -498,13 +501,13 @@ const RSVP = () => {
                 }
                 .section-subtitle {
                     color: var(--color-gold);
-                    letter-spacing: 5px;
+                    letter-spacing: 4px;
                     text-transform: uppercase;
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                     font-weight: 600;
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                 }
-                .rsvp-header h1 { font-size: 3.5rem; color: #1A1A1A; margin: 0; }
+                .rsvp-header h1 { font-size: 3rem; color: #1A1A1A; margin: 0; font-weight: 400; }
                 .decorative-divider {
                     display: flex; align-items: center; justify-content: center; margin: 20px 0;
                 }
@@ -530,12 +533,13 @@ const RSVP = () => {
                 
                 .form-group { display: flex; flex-direction: column; gap: 10px; flex: 1; }
                 .form-group label {
-                    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-                    letter-spacing: 1.5px; color: var(--color-text-light);
+                    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+                    letter-spacing: 1.2px; color: var(--color-text-light);
+                    margin-bottom: 4px;
                 }
                 .form-group input, .form-group textarea, .form-group select {
-                    background: #FAF9F6; border: 1px solid #EEE; padding: 16px 20px;
-                    border-radius: 12px; font-family: var(--font-sans); font-size: 0.95rem;
+                    background: #FAF9F6; border: 1px solid #EEE; padding: 14px 18px;
+                    border-radius: 10px; font-family: var(--font-sans); font-size: 0.9rem;
                     transition: all 0.3s ease;
                 }
                 .form-group input:focus, .form-group textarea:focus {

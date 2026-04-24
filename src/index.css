@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap');
+
+:root {
+  --color-gold: #C5A059; /* The primary gold from the snippet */
+  --color-green: #556B2F; /* The dark olive green from the snippet */
+  --color-bg-white: #F9F7F2;
+  --color-bg-white-soft: #FCFAF7;
+  --color-bg-green-soft: #F1F3ED;
+  --color-bg: #FDFBF7;
+  --color-text-dark: #1A1A1A;
+  --color-text-light: #566573;
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(197, 160, 89, 0.2);
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', 'Inter', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+  --transition-smooth: all 0.4s cubic-bezier(0.1, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.script {
+  font-family: var(--font-script);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.italic { font-style: italic; }
+.text-sage { color: var(--color-primary); }
+.text-gold { color: var(--color-secondary); }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Animations */
+@keyframes scroll-pill {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+@keyframes draw-rings {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* --- BOTÓN VERDE --- */
+.btn-green {
+  background-color: var(--color-green);
+  border: 1px solid var(--color-green);
+  color: var(--color-bg-white);
+  padding: 12px 32px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  border-radius: 0;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-green:hover {
+  background-color: transparent;
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* --- BOTÓN DORADO --- */
+.btn-gold {
+  background-color: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 12px 32px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  border-radius: 0;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-bg-white);
+}
+
+/* --- EFECTO DESTELLO (SHINE) --- */
+.btn-green::after, .btn-gold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  transform: skewX(-25deg); 
+  transition: none;
+}
+
+.btn-green:hover::after, .btn-gold:hover::after {
+  left: 200%;
+  transition: left 2.5s cubic-bezier(0.1, 0, 0.2, 1); 
+}
+
+.nav-spacer {
+  height: 80px;
+}

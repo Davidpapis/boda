@@ -97,7 +97,12 @@ const Layout = () => {
         backgroundPosition: 'center' 
       }}>
         {/* Growing Leaves Animation - Edge-to-Edge positioning */}
-        <div className="footer-branch-left">
+        <motion.div 
+          className="footer-branch-left"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <svg viewBox="0 0 250 450" className="footer-svg">
             <motion.path 
               d="M50,450 Q75,300 50,20" 
@@ -105,10 +110,10 @@ const Layout = () => {
               strokeWidth="8" 
               strokeLinecap="round"
               fill="none"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              transition={{ duration: 2.5 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { pathLength: 0 },
+                visible: { pathLength: 1, transition: { duration: 2.5, ease: "easeOut" } }
+              }}
             />
             <motion.path 
               d="M58,320 Q120,240 150,150" 
@@ -116,10 +121,10 @@ const Layout = () => {
               strokeWidth="6" 
               strokeLinecap="round"
               fill="none"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              transition={{ duration: 2, delay: 1 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { pathLength: 0 },
+                visible: { pathLength: 1, transition: { duration: 2, delay: 1, ease: "easeOut" } }
+              }}
             />
             {[
               { d: "M55,410 Q95,390 120,400 Q95,430 55,410", delay: 0.6, o: "55px 410px" },
@@ -135,11 +140,15 @@ const Layout = () => {
                 key={i}
                 d={leaf.d}
                 fill="var(--color-green)"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.7 }}
-                transition={{ duration: 1.2, delay: leaf.delay }}
-                viewport={{ once: true }}
                 style={{ transformOrigin: leaf.o }}
+                variants={{
+                  hidden: { scale: 0, opacity: 0 },
+                  visible: { 
+                    scale: 1, 
+                    opacity: 0.7, 
+                    transition: { duration: 1.2, delay: leaf.delay, ease: "backOut" } 
+                  }
+                }}
               />
             ))}
             {[
@@ -153,16 +162,25 @@ const Layout = () => {
                 cx={olive.cx} cy={olive.cy} rx="8" ry="10"
                 fill="var(--color-green)"
                 style={{ filter: 'brightness(0.6)' }}
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.85 }}
-                transition={{ duration: 1.2, delay: olive.delay, type: "spring" }}
-                viewport={{ once: true }}
+                variants={{
+                  hidden: { scale: 0, opacity: 0 },
+                  visible: { 
+                    scale: 1, 
+                    opacity: 0.85, 
+                    transition: { duration: 1.2, delay: olive.delay, type: "spring" } 
+                  }
+                }}
               />
             ))}
           </svg>
-        </div>
+        </motion.div>
 
-        <div className="footer-branch-right">
+        <motion.div 
+          className="footer-branch-right"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <svg viewBox="0 0 250 450" className="footer-svg mirrored">
             <motion.path 
               d="M50,450 Q75,300 50,20" 
@@ -170,10 +188,10 @@ const Layout = () => {
               strokeWidth="8" 
               strokeLinecap="round"
               fill="none"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              transition={{ duration: 2.5, delay: 0.3 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { pathLength: 0 },
+                visible: { pathLength: 1, transition: { duration: 2.5, delay: 0.3, ease: "easeOut" } }
+              }}
             />
             <motion.path 
               d="M58,320 Q120,240 150,150" 
@@ -181,10 +199,10 @@ const Layout = () => {
               strokeWidth="6" 
               strokeLinecap="round"
               fill="none"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              transition={{ duration: 2, delay: 1.3 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { pathLength: 0 },
+                visible: { pathLength: 1, transition: { duration: 2, delay: 1.3, ease: "easeOut" } }
+              }}
             />
             {[
               { d: "M55,410 Q95,390 120,400 Q95,430 55,410", delay: 0.9, o: "55px 410px" },
@@ -200,11 +218,15 @@ const Layout = () => {
                 key={i}
                 d={leaf.d}
                 fill="var(--color-green)"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.7 }}
-                transition={{ duration: 1.2, delay: leaf.delay }}
-                viewport={{ once: true }}
                 style={{ transformOrigin: leaf.o }}
+                variants={{
+                  hidden: { scale: 0, opacity: 0 },
+                  visible: { 
+                    scale: 1, 
+                    opacity: 0.7, 
+                    transition: { duration: 1.2, delay: leaf.delay, ease: "backOut" } 
+                  }
+                }}
               />
             ))}
             {[
@@ -218,14 +240,18 @@ const Layout = () => {
                 cx={olive.cx} cy={olive.cy} rx="8" ry="10"
                 fill="var(--color-green)"
                 style={{ filter: 'brightness(0.6)' }}
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.85 }}
-                transition={{ duration: 1.2, delay: olive.delay, type: "spring" }}
-                viewport={{ once: true }}
+                variants={{
+                  hidden: { scale: 0, opacity: 0 },
+                  visible: { 
+                    scale: 1, 
+                    opacity: 0.85, 
+                    transition: { duration: 1.2, delay: olive.delay, type: "spring" } 
+                  }
+                }}
               />
             ))}
           </svg>
-        </div>
+        </motion.div>
 
         <div className="container relative">
           

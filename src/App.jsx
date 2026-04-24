@@ -9,9 +9,12 @@ import Trani from './pages/Trani';
 import Viaggio from './pages/Viaggio';
 import RSVP from './pages/RSVP';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

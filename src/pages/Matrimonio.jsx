@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Music, Utensils, GlassWater, Church, Play } from 'lucide-react';
+import { Clock, MapPin, Music, Utensils, GlassWater, Church } from 'lucide-react';
 
 // Asset Imports
 import cathedralNew from '../assets/recursos/cathedral-new.jpg';
@@ -117,29 +117,30 @@ const Matrimonio = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="video-section">
-        <div className="container text-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="video-wrapper shadow-premium"
-          >
-            <div className="video-header">
-              <Play size={20} className="text-gold" />
-              <h2 className="serif">Vivi l'atmosfera</h2>
-            </div>
-            <div className="video-iframe-container">
-              <iframe 
-                src="https://www.youtube.com/embed/U7g9EVluaf4" 
-                title="Corte Bracco dei Germani Video" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </div>
-          </motion.div>
+      {/* Video Hero Section */}
+      <section className="video-full-section">
+        <div className="video-background-container">
+          <div className="video-foreground">
+            <iframe 
+              src="https://www.youtube.com/embed/U7g9EVluaf4?autoplay=1&mute=1&controls=0&loop=1&playlist=U7g9EVluaf4&modestbranding=1&playsinline=1&rel=0&showinfo=0" 
+              frameBorder="0" 
+              allow="autoplay; encrypted-media" 
+              allowFullScreen
+              title="Corte Bracco Background Video"
+            ></iframe>
+          </div>
+          <div className="video-overlay-dark"></div>
+          <div className="video-text-content">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <h2 className="serif text-white">Vivi l'atmosfera</h2>
+              <div className="divider-gold-center"></div>
+              <p className="sans text-white italic">Un’esperienza sensoriale indimenticabile</p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -388,48 +389,63 @@ const Matrimonio = () => {
           filter: grayscale(1);
         }
 
-        /* Video Section */
-        .video-section {
-          padding: 100px 0;
-          background: #fff;
-        }
-
-        .video-wrapper {
-          max-width: 900px;
-          margin: 0 auto;
-          background: #F9F7F2;
-          padding: 40px;
-          border-radius: 30px;
-        }
-
-        .video-header {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 15px;
-          margin-bottom: 30px;
-        }
-
-        .video-header h2 {
-          font-size: 2.5rem;
-          color: var(--color-green);
-        }
-
-        .video-iframe-container {
+        /* Video Background Section */
+        .video-full-section {
+          height: 60vh;
           position: relative;
-          padding-bottom: 56.25%; /* 16:9 aspect ratio */
-          height: 0;
+          width: 100%;
           overflow: hidden;
-          border-radius: 20px;
-          box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
-        .video-iframe-container iframe {
+        .video-background-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+
+        .video-foreground {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
+          pointer-events: none;
+        }
+
+        .video-foreground iframe {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100vw;
+          height: 56.25vw; /* 16:9 ratio */
+          min-height: 100vh;
+          min-width: 177.77vh; /* 16:9 ratio */
+          transform: translate(-50%, -50%);
+        }
+
+        .video-overlay-dark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.4);
+          z-index: 2;
+        }
+
+        .video-text-content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          text-align: center;
+          width: 100%;
+        }
+
+        .video-text-content h2 {
+          font-size: 4rem;
+          text-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
         /* Venue Section */
@@ -475,11 +491,11 @@ const Matrimonio = () => {
           .hero-wedding-content h1 {
             font-size: 3.5rem;
           }
-          .video-wrapper {
-            padding: 20px;
+          .video-text-content h2 {
+            font-size: 2.5rem;
           }
-          .video-header h2 {
-            font-size: 2rem;
+          .video-full-section {
+            height: 40vh;
           }
         }
       `}</style>

@@ -472,31 +472,33 @@ const Matrimonio = () => {
         }
 
         @media (max-width: 991px) {
-          .timeline-line {
-            left: 30px;
+          .timeline-line, .timeline-dot {
+            display: none;
           }
-          .timeline-item {
-            justify-content: flex-start;
-            padding-left: 70px;
-            padding-right: 0;
-          }
-          .timeline-item.right {
-            padding-left: 70px;
-          }
-          .timeline-dot {
-            left: 30px;
+          .timeline-item, .timeline-item.right {
+            justify-content: center;
+            padding: 0 15px;
+            margin-bottom: 50px;
           }
           .timeline-content-wrapper {
             max-width: 100%;
+            padding: 0;
+            width: 100%;
+          }
+          .timeline-image-box {
+            height: 200px;
           }
           .hero-wedding-content h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
           }
           .video-text-content h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
           }
           .video-full-section {
-            height: 40vh;
+            height: 35vh;
+          }
+          .wedding-timeline {
+            padding: 60px 0;
           }
         }
       `}</style>

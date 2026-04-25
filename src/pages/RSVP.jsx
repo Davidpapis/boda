@@ -40,10 +40,39 @@ const RSVP = () => {
         setCompanions(newCompanions);
     };
 
+    const submitToGoogleSheets = async (templateParams) => {
+        // SheetDB API URL - User should replace this ID with theirs
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/w0kh2n21uj8ms'; 
+        
+        const data = {
+            "Nombre": templateParams.from_name,
+            "Email": templateParams.from_email,
+            "Asistencia": templateParams.attendance,
+            "Acompañantes (Sí/No)": templateParams.has_companion,
+            "Nombres Acompañantes": templateParams.companions,
+            "Alergias": templateParams.allergies,
+            "Bus": templateParams.bus,
+            "Mensaje": templateParams.message,
+            "Fecha": new Date().toLocaleString()
+        };
+
+        try {
+            await fetch(SHEETDB_URL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: [data] })
+            });
+        } catch (error) {
+            console.error('Error submitting to SheetDB:', error);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Prepare template parameters for EmailJS
         const templateParams = {
             from_name: formData.name,
             from_email: formData.email,
@@ -57,20 +86,17 @@ const RSVP = () => {
             message: formData.message || 'Nessun messaggio'
         };
 
-        // Loading state (optional, but good for UX)
         const btn = e.target.querySelector('button[type="submit"]');
         const originalBtnText = btn.innerHTML;
         btn.innerHTML = 'INVIO IN CORSO...';
         btn.disabled = true;
 
-        emailjs.send(
-            'service_bdyjfnh', 
-            'template_8klg2ne', 
-            templateParams, 
-            'NI9XTDPdVpjbIipNb'
-        )
-        .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
+        // Send to Google Sheets and EmailJS in parallel
+        Promise.all([
+            emailjs.send('service_bdyjfnh', 'template_8klg2ne', templateParams, 'NI9XTDPdVpjbIipNb'),
+            submitToGoogleSheets(templateParams)
+        ])
+        .then(() => {
             setSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
             confetti({
@@ -79,8 +105,9 @@ const RSVP = () => {
                 origin: { y: 0.6 },
                 colors: ['#C5A059', '#556B2F', '#F9F7F2']
             });
-        }, (err) => {
-            console.log('FAILED...', err);
+        })
+        .catch((err) => {
+            console.error('FAILED...', err);
             btn.innerHTML = originalBtnText;
             btn.disabled = false;
             alert("Oops! Qualcosa è andato storto. Riprova più tardi.");

@@ -669,11 +669,29 @@ const Home = () => {
         .welcome-text { font-size: 1.25rem; font-style: italic; color: var(--color-text-light); }
 
         @media (max-width: 768px) {
-          .hero-title { font-size: 4.5rem; }
-          .hero-intro { font-size: 2.2rem; }
-          .countdown-modern { gap: 20px; }
-          .count { font-size: 2.22rem; }
-          .save-the-date h3 { font-size: 2.5rem; }
+          .hero-title { 
+            font-size: 3.2rem; 
+            white-space: nowrap;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+          }
+          .hero-intro { 
+            font-size: 1.8rem; 
+            margin: 5px 0;
+          }
+          .hero-subtitle { 
+            font-size: 0.85rem; 
+            white-space: nowrap;
+            letter-spacing: 0.2em;
+            margin-top: 10px;
+          }
+          .hero-content {
+            padding: 0 15px;
+            width: 100%;
+          }
+          .countdown-modern { gap: 15px; }
+          .count { font-size: 1.8rem; }
+          .save-the-date h3 { font-size: 2.2rem; }
         }
       `}</style>
     </div>

@@ -71,19 +71,32 @@ const Layout = () => {
 
         {/* Mobile Menu */}
         <div className={`nav-mobile ${isOpen ? 'open' : ''}`}>
-          {navItems.map((item) => (
-            <NavLink 
-              key={item.path} 
-              to={item.path} 
-              className="nav-mobile-link"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </NavLink>
-          ))}
-          <NavLink to="/rsvp" className="nav-mobile-link rsvp-highlight" onClick={() => setIsOpen(false)}>
-            RSVP
-          </NavLink>
+          <div className="mobile-menu-header">
+            <img src={logo} alt="Logo" className="mobile-menu-logo" />
+            <div className="divider-gold" style={{ width: '40px', margin: '15px auto' }}></div>
+          </div>
+          
+          <div className="mobile-menu-links">
+            {navItems.map((item) => (
+              <NavLink 
+                key={item.path} 
+                to={item.path} 
+                className="nav-mobile-link"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            ))}
+            <div className="mobile-rsvp-container">
+              <NavLink to="/rsvp" className="nav-mobile-link rsvp-special" onClick={() => setIsOpen(false)}>
+                Confirmare <Heart size={16} fill="currentColor" />
+              </NavLink>
+            </div>
+          </div>
+
+          <div className="mobile-menu-footer">
+            <p className="script text-gold" style={{ fontSize: '2rem' }}>Con amore, D & G</p>
+          </div>
         </div>
       </nav>
 
@@ -440,23 +453,71 @@ const Layout = () => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 0;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1001;
             visibility: hidden;
+            padding: 40px 20px;
           }
           .nav-mobile.open {
             right: 0;
             visibility: visible;
           }
+          .mobile-menu-header {
+            margin-bottom: 40px;
+            text-align: center;
+          }
+          .mobile-menu-logo {
+            height: 140px;
+            width: auto;
+            object-fit: contain;
+          }
+          .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+          }
           .nav-mobile-link {
             text-decoration: none;
-            color: #1A1A1A; /* Dark text for white mobile background */
-            font-size: 1.5rem;
+            color: #1A1A1A;
+            font-size: 1.4rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             transition: var(--transition-smooth);
+            font-family: var(--font-serif);
+          }
+          .mobile-rsvp-container {
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+          .rsvp-special {
+            background: var(--color-green);
+            color: white !important;
+            padding: 14px 45px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px rgba(85, 107, 47, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+          }
+          .divider-gold {
+            height: 1.5px;
+            background: var(--color-gold);
+            opacity: 0.5;
+          }
+          .mobile-menu-footer {
+            margin-top: auto;
+            padding-bottom: 40px;
+            text-align: center;
           }
           .nav-mobile-link:hover, .nav-mobile-link.active {
             color: var(--color-gold);
@@ -581,6 +642,15 @@ const Layout = () => {
           }
           .footer-names {
             font-size: 1.5rem;
+          }
+          .footer-branch-left, .footer-branch-right {
+            width: 160px;
+            height: 250px;
+            bottom: -10px;
+          }
+          .footer {
+            min-height: 45vh;
+            padding: 60px 0 40px;
           }
         }
       `}</style>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Users, Utensils, Bus, Heart, Send, CheckCircle, MessageSquare, Info, Plus, Trash2, Gift, CreditCard, Mail, Home } from 'lucide-react';
+import { User, Users, Utensils, Bus, Heart, Send, CheckCircle, MessageSquare, Info, Plus, Trash2, Gift, CreditCard, Mail, Home, Copy } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
@@ -410,7 +410,7 @@ const RSVP = () => {
                                     <div className="form-group">
                                         <textarea 
                                             name="message" 
-                                            placeholder="Dicci qualcosa, suggerisci una canzone o simplemente mandaci un saluto!"
+                                            placeholder="Dicci qualcosa, suggerisci una canzone o semplicemente mandaci un saluto!"
                                             rows="3"
                                             value={formData.message}
                                             onChange={handleChange}
@@ -437,8 +437,9 @@ const RSVP = () => {
                 {/* Gift & Info Column */}
                 <motion.aside 
                     initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, delay: 0.5 }}
+                    viewport={{ once: true }}
                     className="rsvp-info-column"
                 >
                     <div className="gift-card shadow-premium">
@@ -450,36 +451,72 @@ const RSVP = () => {
                             "Vorrà dire di no, che il vostro miglior regalo è la vostra presenza... ma siccome sappiamo che non ci ascolterete..."
                         </p>
                         <p className="gift-message sans">
-                            Se volete aiutarci con la nostra luna di miel (o con le bollette che ci aspettano al retorno!), 
-                            potete farlo tramite un bonifico o, se preferite el metodo classico, lasciando un sobre durante el ricevimento.
+                            Se volete aiutarci con la nostra luna di miele (o con le bollette che ci aspettano al ritorno!), 
+                            potete farlo tramite un bonifico o, se preferite il metodo classico, lasciando una busta durante il ricevimento.
                         </p>
                         
                         <div className="iban-section">
                             <div className="iban-label serif">Codice IBAN</div>
                             <div className="iban-box">
                                 <CreditCard size={18} className="text-gold" />
-                                <code>IT59 Y 03069 78634 10000 00060 08</code>
+                                <code id="iban-code" style={{ fontWeight: '800', fontSize: '0.95rem' }}>IT59 Y 03069 78634 10000 00060 08</code>
+                                <button 
+                                    className="copy-btn"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText('IT59Y0306978634100000006008');
+                                        const btn = document.querySelector('.copy-btn');
+                                        const originalContent = btn.innerHTML;
+                                        btn.innerHTML = '<span style="color: #27AE60">✓</span>';
+                                        setTimeout(() => btn.innerHTML = originalContent, 2000);
+                                    }}
+                                    title="Copia IBAN"
+                                    style={{
+                                        background: 'rgba(197, 160, 89, 0.1)',
+                                        padding: '5px 10px',
+                                        borderRadius: '5px',
+                                        marginLeft: '10px',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    <Copy size={16} className="text-gold" />
+                                </button>
                             </div>
                             <p className="iban-info text-xs">Intestato a: David & Giuliana</p>
                         </div>
 
                         <div className="funny-footer">
-                            <p className="serif italic">¡Prometemos no gastárnoslo todo en helados di pistacho!</p>
+                            <p className="serif italic">Promettiamo di non spenderlo tutto in gelato al pistacchio!</p>
                         </div>
 
                         {/* Honeymoon Image in the green card */}
                         <motion.div 
                             className="honeymoon-image-container"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5, duration: 1 }}
-                            style={{ height: '220px', marginTop: '30px' }}
+                            style={{ height: '220px', marginTop: '30px', overflow: 'hidden' }}
                         >
-                            <img src={honeymoonPlane} alt="Honeymoon travel" className="honeymoon-plane-img" />
-                            <div className="honeymoon-overlay">
-                                <span className="script" style={{ fontSize: '1.8rem' }}>Prossima fermata: Amore</span>
-                            </div>
+                            <img 
+                                src={honeymoonPlane} 
+                                alt="Honeymoon travel" 
+                                className="honeymoon-plane-img" 
+                                style={{ 
+                                    width: '100%', 
+                                    height: '100%', 
+                                    objectFit: 'cover', 
+                                    objectPosition: 'center 30%' 
+                                }}
+                            />
+                        </motion.div>
+                        <motion.div 
+                            className="honeymoon-message-footer"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.8 }}
+                            style={{ textAlign: 'center', marginTop: '20px' }}
+                        >
+                            <span className="script" style={{ fontSize: '2.5rem', color: 'var(--color-gold)' }}>Prossima fermata: Amore</span>
                         </motion.div>
                     </div>
                 </motion.aside>
@@ -674,11 +711,11 @@ const RSVP = () => {
                 .honeymoon-overlay {
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+                    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%);
                     display: flex;
                     align-items: flex-end;
                     justify-content: center;
-                    padding-bottom: 15px;
+                    padding-bottom: 20px;
                 }
                 .honeymoon-overlay .script {
                     color: white;

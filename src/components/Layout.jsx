@@ -378,10 +378,18 @@ const Layout = () => {
           border-color: #FFFFFF !important;
           color: #FFFFFF !important;
           background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 50px; /* Rounded pill shape */
+          padding: 10px 28px;
+          font-weight: 600;
+          backdrop-filter: blur(5px);
+          border-width: 1.5px;
         }
         .btn-white-nav:hover {
           background-color: #D4AF37 !important;
           border-color: #D4AF37 !important;
+          color: #FFFFFF !important;
+          transform: translateY(-2px) scale(1.05);
+          box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         .nav-mobile-toggle {

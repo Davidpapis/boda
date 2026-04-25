@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import heroAtardecer from '../assets/recursos/trani-hero-atardecer.jpg';
@@ -65,6 +65,9 @@ const Home = () => {
     });
   };
 
+  const ringsRef = useRef(null);
+  const isRingsInView = useInView(ringsRef, { once: true, amount: 0.5 });
+
   return (
     <div className="home-page">
       <section className="hero">
@@ -79,7 +82,7 @@ const Home = () => {
         >
           <h1 className="hero-title script" style={{ order: 1 }}>David & Giuliana</h1>
           <h2 className="hero-intro script" style={{ order: 2 }}>Ci sposiamo!</h2>
-          <p className="hero-subtitle" style={{ order: 3 }}>MARBELLA • TRANI • 2026</p>
+          <p className="hero-subtitle" style={{ order: 3 }}>ITALIA • TRANI • 2026</p>
         </motion.div>
 
         <div className="scroll-indicator">
@@ -90,31 +93,32 @@ const Home = () => {
       </section>
 
       {/* New Section for Countdown and Rings below Hero */}
-      <section className="countdown-section">
+      <section className="countdown-section" ref={ringsRef}>
         <div className="countdown-texture" style={{ backgroundImage: `url(${tilesBg})` }}></div>
         <div className="container">
           <div className="rings-container" style={{ textAlign: 'center', marginBottom: '40px', position: 'relative', zIndex: 999 }}>
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={isRingsInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 1 }}
-              viewport={{ once: true }}
             >
               <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', maxWidth: '100%', height: 'auto', overflow: 'visible' }}>
                 <style>{`
                   .anillo-izq {
-                    animation: unir-izq 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    animation: ${isRingsInView ? 'unir-izq 4s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'};
                     transform-box: fill-box;
                     transform-origin: center;
+                    opacity: 0;
                   }
                   .anillo-der {
-                    animation: unir-der 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    animation: ${isRingsInView ? 'unir-der 4s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'};
                     transform-box: fill-box;
                     transform-origin: center;
+                    opacity: 0;
                   }
                   .brillo-superior {
                     opacity: 0;
-                    animation: destello 2s ease-in-out 3.8s infinite;
+                    animation: ${isRingsInView ? 'destello 2s ease-in-out 3.8s infinite' : 'none'};
                     transform-box: fill-box;
                     transform-origin: center;
                   }
@@ -198,7 +202,13 @@ const Home = () => {
             <p className="countdown-intro serif">Il conto alla rovescia è iniziato</p>
           </motion.div>
 
-          <div className="countdown-modern" data-aos="fade-up">
+          <motion.div 
+            className="countdown-modern"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <div className="countdown-item">
               <span className="count serif">{timeLeft.days}</span>
               <label>Giorni</label>
@@ -215,7 +225,7 @@ const Home = () => {
               <span className="count serif">{timeLeft.seconds}</span>
               <label>Secondi</label>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -309,19 +319,25 @@ const Home = () => {
             <div className="story-img-overlay"></div>
           </motion.div>
 
-          <div className="story-content" data-aos="fade-left">
+          <motion.div 
+            className="story-content"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
             <span className="story-overline text-gold">La Nostra Storia</span>
             <h2 className="story-title serif">L'inizio a Marbella</h2>
             <div className="story-text-wrapper">
               <p className="story-quote serif italic">
-                «Ci sono luoghi che custodiscono promesse e momenti che definiscono una vita. Per noi, quel luogo è Trani e quel momento è arrivato.»
+                «Ci sono luoghi que custodiscono promesse e momenti che definiscono una vita. Per noi, quel luogo è Trani e quel momento è arrivato.»
               </p>
               <p className="story-p">
                 Circondati dalla pietra bianca di Puglia e dall'azzurro infinito dell'Adriático, vogliamo dire il nostro ‘sì’ davanti alle persone che hanno dato un senso al nostro cammino. Più che un matrimonio, è la celebrazione di un'avventura che abbiamo iniziato insieme e che oggi, con la vostra compagnia, diventa eterna.
               </p>
             </div>
             <div className="story-signature script">David & Giuliana</div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

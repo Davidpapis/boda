@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, Utensils, Camera, Bed, Compass, ExternalLink } from 'lucide-react';
 
 const Trani = () => {
@@ -66,21 +67,83 @@ const Trani = () => {
 
   return (
     <div className="trani-page">
-      <div className="nav-spacer"></div>
-      
       {/* Hero Header */}
-      <header className="trani-hero" data-aos="fade-in">
+      <header className="trani-hero">
         <div className="hero-overlay">
           <div className="container">
-            <span className="script text-gold" style={{ fontSize: '2.5rem' }}>Benvenuti a</span>
-            <h1 className="serif">Trani</h1>
-            <p className="hero-desc">La Perla dell'Adriatico</p>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.3 }
+                }
+              }}
+            >
+              <motion.span 
+                className="script text-gold" 
+                style={{ fontSize: '3.5rem', display: 'block', marginBottom: '10px' }}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } }
+                }}
+              >
+                Benvenuti a
+              </motion.span>
+              
+              <motion.h1 
+                className="serif"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9, letterSpacing: "0.2em" },
+                  visible: { opacity: 1, scale: 1, letterSpacing: "normal", transition: { duration: 1.2, ease: "easeOut" } }
+                }}
+              >
+                Trani
+              </motion.h1>
+              
+              <motion.div 
+                className="divider-gold"
+                variants={{
+                  hidden: { width: 0, opacity: 0 },
+                  visible: { width: "80px", opacity: 1, transition: { duration: 0.8, ease: "easeInOut" } }
+                }}
+              ></motion.div>
+              
+              <motion.p 
+                className="hero-desc"
+                variants={{
+                  hidden: { opacity: 0, letterSpacing: "20px" },
+                  visible: { opacity: 1, letterSpacing: "8px", transition: { duration: 1.5, ease: "easeOut" } }
+                }}
+              >
+                La Perla dell'Adriatico
+              </motion.p>
+            </motion.div>
           </div>
+          
+          <motion.div 
+            className="scroll-hint"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+          >
+            <div className="mouse">
+              <div className="wheel"></div>
+            </div>
+          </motion.div>
         </div>
       </header>
 
       {/* Intro */}
-      <section className="intro container" data-aos="fade-up">
+      <motion.section 
+        className="intro container"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="intro-content">
           <Compass className="icon-gold" size={40} />
           <h2 className="serif">Guida alla Città</h2>
@@ -90,18 +153,31 @@ const Trani = () => {
             creando un'atmosfera magica che non vediamo l'ora di condividere con voi.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Cosa Vedere */}
-      <section className="guide-section bg-soft full-width">
-          <div className="section-header" data-aos="fade-up">
+        <section className="guide-section bg-soft full-width">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <Camera className="icon-green" size={30} />
             <h2 className="serif">Cosa Vedere</h2>
             <div className="divider-small"></div>
-          </div>
+          </motion.div>
           <div className="guide-grid">
             {sections.see.map((item, i) => (
-              <div key={i} className="guide-card" data-aos="fade-up" data-aos-delay={i * 100}>
+              <motion.div 
+                key={i} 
+                className="guide-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="card-image" style={{ backgroundImage: `url(${item.img})` }}></div>
                 <div className="card-content">
                   <h3 className="serif">{item.name}</h3>
@@ -110,21 +186,34 @@ const Trani = () => {
                     <MapPin size={16} /> VEDI SU MAPPA
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* Dove Mangiare */}
         <section className="guide-section container">
-          <div className="section-header" data-aos="fade-up">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <Utensils className="icon-green" size={30} />
             <h2 className="serif">Dove Mangiare</h2>
             <div className="divider-small"></div>
-          </div>
+          </motion.div>
           <div className="guide-grid">
             {sections.eat.map((item, i) => (
-              <div key={i} className="guide-card" data-aos="fade-up" data-aos-delay={i * 100}>
+              <motion.div 
+                key={i} 
+                className="guide-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="card-image" style={{ backgroundImage: `url(${item.img})` }}></div>
                 <div className="card-content">
                   <span className="card-tag">{item.type}</span>
@@ -134,21 +223,34 @@ const Trani = () => {
                     <ExternalLink size={16} /> PRENOTA / MAPPA
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* Dintorni */}
         <section className="guide-section bg-soft full-width">
-          <div className="section-header" data-aos="fade-up">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <MapPin className="icon-green" size={30} />
             <h2 className="serif">Nei Dintorni</h2>
             <div className="divider-small"></div>
-          </div>
+          </motion.div>
           <div className="guide-grid cards-two">
             {sections.nearby.map((item, i) => (
-              <div key={i} className="guide-card horizontal" data-aos="fade-up" data-aos-delay={i * 100}>
+              <motion.div 
+                key={i} 
+                className="guide-card horizontal"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="card-image" style={{ backgroundImage: `url(${item.img})` }}></div>
                 <div className="card-content">
                   <div className="card-dist">{item.dist} da Trani</div>
@@ -158,14 +260,20 @@ const Trani = () => {
                     SCOPRI DI PIÙ
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* Alloggio */}
-        <section className="accommodation container" data-aos="zoom-in">
-          <div className="accommodation-box">
+        <section className="accommodation container">
+          <motion.div 
+            className="accommodation-box"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <Bed className="icon-white" size={40} />
             <h2 className="serif">Dove Alloggiare</h2>
             <p>Abbiamo selezionato alcune strutture per voi per rendere il vostro soggiorno indimenticabile.</p>
@@ -175,13 +283,13 @@ const Trani = () => {
               <a href="https://www.palazzopaciotti.it/" target="_blank" rel="noopener noreferrer" className="hotel-btn">B&B Palazzo Paciotti</a>
             </div>
             <p className="note">Suggeriamo di prenotare quanto prima per assicurarvi la disponibilità!</p>
-          </div>
+          </motion.div>
         </section>
 
         <style>{`
           .trani-page { background: var(--color-bg); padding-bottom: 100px; overflow-x: hidden; }
           .trani-hero {
-            height: 60vh;
+            height: 100vh;
             background-image: url('/images/trani/hero.png');
             background-size: cover;
             background-position: center;
@@ -194,11 +302,17 @@ const Trani = () => {
           }
           .hero-overlay {
             position: absolute; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.3);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.2), rgba(0,0,0,0.5));
             display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
           }
-          .trani-hero h1 { font-size: 6rem; line-height: 1; margin: 10px 0; }
-          .hero-desc { font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; }
+          .divider-gold { width: 80px; height: 2px; background: var(--color-gold); margin: 20px auto; }
+          .trani-hero h1 { font-size: 8rem; line-height: 0.9; margin: 0; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+          .hero-desc { font-size: 1.8rem; letter-spacing: 8px; text-transform: uppercase; font-weight: 300; }
+          .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); }
+          .mouse { width: 30px; height: 50px; border: 2px solid rgba(255,255,255,0.4); border-radius: 20px; position: relative; }
+          .wheel { width: 4px; height: 8px; background: white; border-radius: 2px; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); animation: scroll-pill 2s infinite; }
+          @keyframes scroll-pill { 0% { transform: translate(-50%, 0); opacity: 1; } 100% { transform: translate(-50%, 15px); opacity: 0; } }
           .intro { padding: 80px 0; text-align: center; max-width: 700px; }
           .intro-content p { font-size: 1.2rem; color: var(--color-text-light); line-height: 1.8; margin-top: 20px; font-style: italic; }
           .icon-gold { color: var(--color-gold); margin-bottom: 20px; }
@@ -211,7 +325,13 @@ const Trani = () => {
           .divider-small { width: 50px; height: 2px; background: var(--color-gold); margin: 0 auto; }
           .icon-green { color: var(--color-green); }
           .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-          .guide-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition-smooth); }
+          .guide-card { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+          }
           .guide-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
           .card-image { height: 250px; background-size: cover; background-position: center; }
           .card-content { padding: 30px; }

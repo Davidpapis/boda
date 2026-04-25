@@ -191,7 +191,12 @@ const RSVP = () => {
     }
 
     return (
-        <div className="rsvp-page" style={{ backgroundColor: '#FAF9F6' }}>
+        <div className="rsvp-page" style={{ 
+            backgroundColor: '#F9F7F2',
+            backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.96), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
+            backgroundSize: '400px repeat',
+            backgroundPosition: 'center top'
+        }}>
             <div className="nav-spacer"></div>
             
             <header className="rsvp-header">

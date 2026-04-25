@@ -93,7 +93,8 @@ const Home = () => {
       </section>
 
       {/* New Section for Countdown and Rings below Hero */}
-      <section className="countdown-section" ref={ringsRef} style={{ backgroundColor: '#FAF9F6' }}>
+      <section className="countdown-section" ref={ringsRef}>
+        <div className="countdown-texture" style={{ backgroundImage: `url(${tilesBg})` }}></div>
         <div className="container">
           <div className="rings-container" style={{ textAlign: 'center', marginBottom: '40px', position: 'relative', zIndex: 999 }}>
             <motion.div

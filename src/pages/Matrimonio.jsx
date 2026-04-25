@@ -71,7 +71,7 @@ const Matrimonio = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="wedding-timeline" style={{ backgroundImage: `url(${marbleBg})` }}>
+      <section className="wedding-timeline" style={{ backgroundColor: '#FAF9F6' }}>
         <div className="container">
           <div className="timeline-container">
             {/* The vertical line */}
@@ -239,8 +239,6 @@ const Matrimonio = () => {
         .wedding-timeline {
           padding: 120px 0;
           position: relative;
-          background-size: 400px;
-          background-repeat: repeat;
         }
 
         .timeline-container {

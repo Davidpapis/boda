@@ -4,6 +4,7 @@ import { Clock, MapPin, Music, Utensils, GlassWater, Church } from 'lucide-react
 
 // Asset Imports
 import cathedralNew from '../assets/recursos/cathedral-new.jpg';
+import heroMatrimonio from '../assets/recursos/hero-matrimonio.webp';
 import aperitivoNew from '../assets/recursos/aperitivo-new.jpg';
 import cenaNew from '../assets/recursos/cena-new.jpg';
 import festaNew from '../assets/recursos/festa-new.jpg';
@@ -55,7 +56,7 @@ const Matrimonio = () => {
       {/* Cinematic Hero */}
       <section className="wedding-hero">
         <div className="hero-overlay"></div>
-        <img src={cathedralNew} alt="Cattedrale di Trani" className="hero-img-full" />
+        <img src={heroMatrimonio} alt="Il Matrimonio" className="hero-img-full" />
         <motion.div 
           className="hero-wedding-content"
           initial={{ opacity: 0, y: 50 }}

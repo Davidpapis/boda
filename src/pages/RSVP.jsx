@@ -508,7 +508,7 @@ const RSVP = () => {
                                     <Copy size={16} className="text-gold" />
                                 </button>
                             </div>
-                            <p className="iban-info text-xs">Intestato a: David & Giuliana</p>
+                            <p className="iban-info text-xs">Intestato a: Giuliana la Monaca</p>
                         </div>
 
                         <div className="funny-footer">

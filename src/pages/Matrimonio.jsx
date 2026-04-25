@@ -66,7 +66,7 @@ const Matrimonio = () => {
           <span className="script text-gold" style={{ fontSize: '2.5rem' }}>Il Nostro Giorno</span>
           <h1 className="serif">Il Matrimonio</h1>
           <div className="divider-gold-center"></div>
-          <p className="hero-date sans">27 GIUGNO 2026 • TRANI</p>
+          <p className="hero-date sans">15 LUGLIO 2026 • TRANI</p>
         </motion.div>
       </section>
 

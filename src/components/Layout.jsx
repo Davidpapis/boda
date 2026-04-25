@@ -294,11 +294,11 @@ const Layout = () => {
 
       <style>{`
         .navbar {
-          background-color: rgba(255, 199, 149, 0.85) !important; /* Sunset glass tone */
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+          background-color: rgba(85, 107, 47, 0.85) !important; 
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
           position: fixed;
           top: 0;
           left: 0;
@@ -331,6 +331,7 @@ const Layout = () => {
           height: 100px;
           transition: var(--transition-smooth);
           display: block;
+          filter: brightness(0) invert(1); /* Back to solid white as requested */
         }
         .scrolled .logo-img {
           height: 55px;
@@ -339,9 +340,9 @@ const Layout = () => {
         .nav-link {
           text-decoration: none;
           color: #FFFFFF !important;
-          font-family: 'Montserrat', sans-serif;
-          font-size: 0.8rem;
-          font-weight: 600;
+          font-family: var(--font-serif);
+          font-size: 1rem;
+          font-weight: 500;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           transition: var(--transition-smooth);

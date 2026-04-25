@@ -93,6 +93,100 @@ const Home = () => {
       <section className="countdown-section">
         <div className="countdown-texture" style={{ backgroundImage: `url(${tilesBg})` }}></div>
         <div className="container">
+          <div className="rings-container" style={{ textAlign: 'center', marginBottom: '40px', position: 'relative', zIndex: 999 }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', maxWidth: '100%', height: 'auto', overflow: 'visible' }}>
+                <style>{`
+                  .anillo-izq {
+                    animation: unir-izq 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                  }
+                  .anillo-der {
+                    animation: unir-der 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                  }
+                  .brillo-superior {
+                    opacity: 0;
+                    animation: destello 2s ease-in-out 3.8s infinite;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                  }
+                  @keyframes unir-izq {
+                    0% { transform: translateX(-200px) rotate(-15deg); opacity: 0; }
+                    100% { transform: translateX(0px) rotate(-15deg); opacity: 1; }
+                  }
+                  @keyframes unir-der {
+                    0% { transform: translateX(200px) rotate(15deg); opacity: 0; }
+                    100% { transform: translateX(0px) rotate(15deg); opacity: 1; }
+                  }
+                  @keyframes destello {
+                    0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+                    50% { opacity: 1; transform: scale(1.2) rotate(90deg); }
+                  }
+                `}</style>
+
+                <defs>
+                  <linearGradient id="oroJoven" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#FFD700' }} />
+                    <stop offset="30%" style={{ stopColor: '#FFFACD' }} />
+                    <stop offset="60%" style={{ stopColor: '#FFDF00' }} />
+                    <stop offset="100%" style={{ stopColor: '#DAA520' }} />
+                  </linearGradient>
+
+                  <filter id="glow-anillo">
+                    <feGaussianBlur stdDeviation="0.5" result="blur"/>
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                  </filter>
+
+                  {/* Máscara para el efecto cruzado: blanco es visible, negro es invisible */}
+                  <mask id="mascara-cruce">
+                    <rect x="0" y="0" width="600" height="400" fill="black" />
+                    <rect x="0" y="200" width="600" height="200" fill="white" />
+                  </mask>
+                </defs>
+
+                {/* 1. Anillo Izquierdo (Base) */}
+                <g transform="translate(265, 200)">
+                  <g className="anillo-izq">
+                    <ellipse cx="0" cy="0" rx="50" ry="38" fill="none" stroke="url(#oroJoven)" strokeWidth="8" filter="url(#glow-anillo)" />
+                    <ellipse cx="0" cy="0" rx="45" ry="34" fill="none" stroke="#FFFFFF" strokeOpacity="0.3" strokeWidth="1" />
+                  </g>
+                </g>
+                
+                {/* 2. Anillo Derecho */}
+                <g transform="translate(335, 200)">
+                  <g className="anillo-der">
+                    <ellipse cx="0" cy="0" rx="50" ry="38" fill="none" stroke="url(#oroJoven)" strokeWidth="8" filter="url(#glow-anillo)" />
+                    <ellipse cx="0" cy="0" rx="45" ry="34" fill="none" stroke="#FFFFFF" strokeOpacity="0.3" strokeWidth="1" />
+                  </g>
+                </g>
+
+                {/* 3. Clon del Anillo Izquierdo (Solo visible abajo para cruzar) */}
+                <g transform="translate(265, 200)" mask="url(#mascara-cruce)">
+                  <g className="anillo-izq">
+                    <ellipse cx="0" cy="0" rx="50" ry="38" fill="none" stroke="url(#oroJoven)" strokeWidth="8" filter="url(#glow-anillo)" />
+                    <ellipse cx="0" cy="0" rx="45" ry="34" fill="none" stroke="#FFFFFF" strokeOpacity="0.3" strokeWidth="1" />
+                  </g>
+                </g>
+
+                <g transform="translate(300, 110)">
+                  <g className="brillo-superior">
+                    <path d="M-30 0 L30 0 M0 -30 L0 30" stroke="#FFFACD" strokeWidth="2" />
+                    <path d="M-20 -20 L20 20 M-20 20 L20 -20" stroke="#FFFACD" strokeWidth="1" />
+                    <circle cx="0" cy="0" r="6" fill="white" filter="url(#glow-anillo)" />
+                  </g>
+                </g>
+              </svg>
+            </motion.div>
+          </div>
+
           <motion.div 
             className="save-the-date"
             initial={{ opacity: 0, y: 20 }}
@@ -125,26 +219,33 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="floral-separator-container">
-        <div className="floral-wrapper">
+      {/* Floral Separator Section */}
+      <div className="floral-separator-container" style={{ backgroundColor: '#F9FAF7', padding: '100px 0' }}>
+        <div className="floral-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: '0 auto', overflow: 'hidden', display: 'grid', placeItems: 'center' }}>
+          {/* Reveal animation from center using width */}
           <motion.div 
-            className="floral-separator-mask"
-            initial={{ clipPath: 'inset(0 50% 0 50%)', opacity: 0 }}
-            whileInView={{ clipPath: 'inset(0 0% 0 0%)', opacity: 1 }}
-            transition={{ duration: 3, ease: "easeInOut" }}
+            initial={{ width: 0 }}
+            whileInView={{ width: '100%' }}
+            transition={{ duration: 2.5, ease: "easeInOut" }}
             viewport={{ once: true }}
+            style={{ gridArea: '1/1', overflow: 'hidden', display: 'flex', justifyContent: 'center', width: '100%', zIndex: 1 }}
           >
-            <img src={oliveSeparator} alt="Separator" className="olive-floral-img" />
+            <img 
+              src={oliveSeparator} 
+              alt="Separator" 
+              style={{ width: '800px', maxWidth: 'none', height: 'auto', display: 'block' }} 
+            />
           </motion.div>
           
           <motion.div 
             className="separator-logo-container"
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2, delay: 1 }}
+            transition={{ duration: 1.5, delay: 1.5 }}
             viewport={{ once: true }}
+            style={{ gridArea: '1/1', zIndex: 10, position: 'relative' }}
           >
-            <img src={logo} alt="D&G Logo" className="separator-logo-img" />
+            <img src={logo} alt="D&G Logo" className="separator-logo-img" style={{ width: '120px', display: 'block' }} />
           </motion.div>
         </div>
       </div>

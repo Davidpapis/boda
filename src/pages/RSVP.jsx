@@ -475,7 +475,7 @@ const RSVP = () => {
                             <h3 className="serif">Un pensiero per noi</h3>
                         </div>
                         <p className="gift-intro sans italic">
-                            "Vorrà dire di no, che il vostro miglior regalo è la vostra presenza... ma siccome sappiamo che non ci ascolterete..."
+                            "Diremo che il regalo più grande sarà la vostra presenza... ma sapendo che non ci ascolterete..."
                         </p>
                         <p className="gift-message sans">
                             Se volete aiutarci con la nostra luna di miele (o con le bollette che ci aspettano al ritorno!), 

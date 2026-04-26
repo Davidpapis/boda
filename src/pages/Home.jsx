@@ -382,7 +382,7 @@ const Home = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,0.25);
+          background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
           z-index: 2;
           display: block;
         }

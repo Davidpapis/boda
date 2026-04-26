@@ -149,7 +149,7 @@ const Trani = () => {
           <h2 className="serif">Guida alla Città</h2>
           <p>
             Trani non è solo il luogo dove abbiamo scelto di celebrare il nostro amore, 
-            è un pezzo del nuestro cuore. Qui la pietra bianca incontra l'azzurro profondo 
+            è un pezzo del nostro cuore. Qui la pietra bianca incontra l'azzurro profondo 
             creando un'atmosfera magica che non vediamo l'ora di condividere con voi.
           </p>
         </div>

@@ -89,7 +89,7 @@ const Layout = () => {
             ))}
             <div className="mobile-rsvp-container">
               <NavLink to="/rsvp" className="nav-mobile-link rsvp-special" onClick={() => setIsOpen(false)}>
-                Confirmare <Heart size={16} fill="currentColor" />
+                Confermare <Heart size={16} fill="currentColor" />
               </NavLink>
             </div>
           </div>

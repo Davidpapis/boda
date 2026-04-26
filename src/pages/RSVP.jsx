@@ -24,7 +24,7 @@ const RSVP = () => {
         if (companions.length < 5) {
             setCompanions([...companions, { name: '', surname: '', relation: 'Amico' }]);
         } else {
-            alert("Puedes añadir un máximo de 5 acompañantes.");
+            alert("Puoi aggiungere un massimo di 5 invitati.");
         }
     };
 
@@ -42,18 +42,18 @@ const RSVP = () => {
 
     const submitToGoogleSheets = async (templateParams) => {
         // SheetDB API URL - User should replace this ID with theirs
-        const SHEETDB_URL = 'https://sheetdb.io/api/v1/w0kh2n21uj8ms'; 
-        
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/w0kh2n21uj8ms';
+
         const data = {
-            "Nombre": templateParams.from_name,
+            "Nome": templateParams.from_name,
             "Email": templateParams.from_email,
-            "Asistencia": templateParams.attendance,
-            "Acompañantes (Sí/No)": templateParams.has_companion,
-            "Nombres Acompañantes": templateParams.companions,
-            "Alergias": templateParams.allergies,
+            "Presenza": templateParams.attendance,
+            "Invitati (Sì/No)": templateParams.has_companion,
+            "Nomi Invitati": templateParams.companions,
+            "Allergie": templateParams.allergies,
             "Bus": templateParams.bus,
-            "Mensaje": templateParams.message,
-            "Fecha": new Date().toLocaleString()
+            "Messaggio": templateParams.message,
+            "Data": new Date().toLocaleString()
         };
 
         try {
@@ -72,14 +72,14 @@ const RSVP = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const templateParams = {
             from_name: formData.name,
             from_email: formData.email,
             attendance: formData.attendance === 'yes' ? 'Sì, ci sarò!' : 'No, purtroppo',
             has_companion: formData.hasCompanion === 'yes' ? 'Sì' : 'No',
-            companions: companions.length > 0 
-                ? companions.map(c => `${c.name} ${c.surname} (${c.relation})`).join(', ') 
+            companions: companions.length > 0
+                ? companions.map(c => `${c.name} ${c.surname} (${c.relation})`).join(', ')
                 : 'Nessuno',
             allergies: formData.allergies || 'Nessuna',
             bus: formData.bus ? 'Sì' : 'No',
@@ -96,22 +96,22 @@ const RSVP = () => {
             emailjs.send('service_bdyjfnh', 'template_8klg2ne', templateParams, 'NI9XTDPdVpjbIipNb'),
             submitToGoogleSheets(templateParams)
         ])
-        .then(() => {
-            setSubmitted(true);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#C5A059', '#556B2F', '#F9F7F2']
+            .then(() => {
+                setSubmitted(true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#C5A059', '#556B2F', '#F9F7F2']
+                });
+            })
+            .catch((err) => {
+                console.error('FAILED...', err);
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+                alert("Oops! Qualcosa è andato storto. Riprova più tardi.");
             });
-        })
-        .catch((err) => {
-            console.error('FAILED...', err);
-            btn.innerHTML = originalBtnText;
-            btn.disabled = false;
-            alert("Oops! Qualcosa è andato storto. Riprova più tardi.");
-        });
     };
 
     const handleChange = (e) => {
@@ -133,20 +133,20 @@ const RSVP = () => {
 
     if (submitted) {
         return (
-            <div className="rsvp-page success-view" style={{ 
+            <div className="rsvp-page success-view" style={{
                 backgroundColor: '#F9F7F2',
                 backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.94), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
                 backgroundSize: '400px repeat',
                 display: 'flex',
                 flexDirection: 'column',
-                height: 'calc(100vh - 80px)', 
+                height: 'calc(100vh - 80px)',
                 justifyContent: 'center',
                 overflow: 'hidden'
             }}>
                 <div className="container success-container" style={{ padding: '0 20px' }}>
-                    <motion.div 
-                        initial={{ scale: 0.9, opacity: 0 }} 
-                        animate={{ scale: 1, opacity: 1 }} 
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
                         className="success-card shadow-premium"
                         style={{ margin: '0 auto', maxWidth: '500px', padding: '40px', background: 'white', borderRadius: '30px', textAlign: 'center' }}
                     >
@@ -162,17 +162,17 @@ const RSVP = () => {
                         <h2 className="serif" style={{ fontSize: '2rem', marginBottom: '15px', color: '#1A1A1A' }}>Grazie di cuore!</h2>
                         <p className="sans" style={{ fontSize: '1rem', lineHeight: '1.5', color: '#666' }}>La tua conferma è stata ricevuta con successo.</p>
                         <p className="sans italic m-t-10" style={{ opacity: 0.8, color: '#C5A059' }}>Non vediamo l'ora di festeggiare insieme a te!</p>
-                        
+
                         <div className="success-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '30px' }}>
                             <Link to="/" className="btn-green-premium" style={{ textDecoration: 'none', padding: '15px', borderRadius: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                                 <Home size={18} /> TORNA ALLA HOME
                             </Link>
-                            <button 
-                                className="btn-gold-outline" 
+                            <button
+                                className="btn-gold-outline"
                                 onClick={() => setSubmitted(false)}
-                                style={{ 
-                                    background: 'transparent', 
-                                    border: '1px solid var(--color-gold)', 
+                                style={{
+                                    background: 'transparent',
+                                    border: '1px solid var(--color-gold)',
                                     color: 'var(--color-gold)',
                                     padding: '12px',
                                     borderRadius: '50px',
@@ -191,16 +191,16 @@ const RSVP = () => {
     }
 
     return (
-        <div className="rsvp-page" style={{ 
+        <div className="rsvp-page" style={{
             backgroundColor: '#F9F7F2',
             backgroundImage: `linear-gradient(to bottom, rgba(249, 247, 242, 0.96), rgba(249, 247, 242, 0.98)), url(${marbleBg})`,
             backgroundSize: '400px repeat',
             backgroundPosition: 'center top'
         }}>
             <div className="nav-spacer"></div>
-            
+
             <header className="rsvp-header">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -216,7 +216,7 @@ const RSVP = () => {
 
             <div className="container rsvp-main-grid">
                 {/* Form Section */}
-                <motion.div 
+                <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -233,10 +233,10 @@ const RSVP = () => {
                                     </div>
                                     <div className="form-group">
                                         <label>Nome e Cognome</label>
-                                        <input 
-                                            type="text" 
-                                            name="name" 
-                                            required 
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            required
                                             placeholder="Il tuo nome completo"
                                             value={formData.name}
                                             onChange={handleChange}
@@ -252,11 +252,11 @@ const RSVP = () => {
                                     </div>
                                     <div className="form-group">
                                         <label>Indirizzo Email</label>
-                                        <input 
-                                            type="email" 
-                                            name="email" 
-                                            required 
-                                            placeholder="ejemplo@gmail.com"
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            required
+                                            placeholder="esempio@gmail.com"
                                             value={formData.email}
                                             onChange={handleChange}
                                         />
@@ -272,12 +272,12 @@ const RSVP = () => {
                                     </div>
                                     <div className="radio-group-modern">
                                         <label className={`radio-card ${formData.attendance === 'yes' ? 'selected' : ''}`}>
-                                            <input 
-                                                type="radio" 
-                                                name="attendance" 
-                                                value="yes" 
-                                                checked={formData.attendance === 'yes'} 
-                                                onChange={handleChange} 
+                                            <input
+                                                type="radio"
+                                                name="attendance"
+                                                value="yes"
+                                                checked={formData.attendance === 'yes'}
+                                                onChange={handleChange}
                                             />
                                             <div className="radio-content">
                                                 <span className="serif">Sì, ci sarò!</span>
@@ -286,12 +286,12 @@ const RSVP = () => {
                                             <div className="radio-indicator"></div>
                                         </label>
                                         <label className={`radio-card ${formData.attendance === 'no' ? 'selected' : ''}`}>
-                                            <input 
-                                                type="radio" 
-                                                name="attendance" 
-                                                value="no" 
-                                                checked={formData.attendance === 'no'} 
-                                                onChange={handleChange} 
+                                            <input
+                                                type="radio"
+                                                name="attendance"
+                                                value="no"
+                                                checked={formData.attendance === 'no'}
+                                                onChange={handleChange}
                                             />
                                             <div className="radio-content">
                                                 <span className="serif">No, purtroppo</span>
@@ -303,7 +303,7 @@ const RSVP = () => {
                                 </div>
 
                                 {formData.attendance === 'yes' && (
-                                    <motion.div 
+                                    <motion.div
                                         layout
                                         initial={{ opacity: 0, height: 0 }}
                                         animate={{ opacity: 1, height: 'auto' }}
@@ -330,7 +330,7 @@ const RSVP = () => {
                                             </div>
 
                                             {formData.hasCompanion === 'yes' && (
-                                                <motion.div 
+                                                <motion.div
                                                     layout
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
@@ -338,7 +338,7 @@ const RSVP = () => {
                                                 >
                                                     <AnimatePresence>
                                                         {companions.map((comp, index) => (
-                                                            <motion.div 
+                                                            <motion.div
                                                                 key={index}
                                                                 initial={{ opacity: 0, x: -10 }}
                                                                 animate={{ opacity: 1, x: 0 }}
@@ -353,23 +353,23 @@ const RSVP = () => {
                                                                 </div>
                                                                 <div className="companion-fields">
                                                                     <div className="form-group">
-                                                                        <input 
-                                                                            type="text" 
+                                                                        <input
+                                                                            type="text"
                                                                             placeholder="Nome"
                                                                             value={comp.name}
                                                                             onChange={(e) => updateCompanion(index, 'name', e.target.value)}
                                                                         />
                                                                     </div>
                                                                     <div className="form-group">
-                                                                        <input 
-                                                                            type="text" 
+                                                                        <input
+                                                                            type="text"
                                                                             placeholder="Cognome"
                                                                             value={comp.surname}
                                                                             onChange={(e) => updateCompanion(index, 'surname', e.target.value)}
                                                                         />
                                                                     </div>
                                                                     <div className="form-group">
-                                                                        <select 
+                                                                        <select
                                                                             value={comp.relation}
                                                                             onChange={(e) => updateCompanion(index, 'relation', e.target.value)}
                                                                         >
@@ -398,8 +398,8 @@ const RSVP = () => {
                                             </div>
                                             <div className="form-group">
                                                 <label>Allergie o Intolleranze</label>
-                                                <textarea 
-                                                    name="allergies" 
+                                                <textarea
+                                                    name="allergies"
                                                     placeholder="Esempio: Vegetariano, Celiaco, Allergie ai crostacei..."
                                                     rows="2"
                                                     value={formData.allergies}
@@ -435,8 +435,8 @@ const RSVP = () => {
                                         <h3 className="serif">Un messaggio per noi</h3>
                                     </div>
                                     <div className="form-group">
-                                        <textarea 
-                                            name="message" 
+                                        <textarea
+                                            name="message"
                                             placeholder="Dicci qualcosa, suggerisci una canzone o semplicemente mandaci un saluto!"
                                             rows="3"
                                             value={formData.message}
@@ -447,10 +447,10 @@ const RSVP = () => {
                             </div>
 
                             <div className="form-footer">
-                                <motion.button 
+                                <motion.button
                                     whileHover={{ scale: 1.02, translateY: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    type="submit" 
+                                    type="submit"
                                     className="btn-green-premium"
                                 >
                                     <Send size={18} />
@@ -462,7 +462,7 @@ const RSVP = () => {
                 </motion.div>
 
                 {/* Gift & Info Column */}
-                <motion.aside 
+                <motion.aside
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, delay: 0.5 }}
@@ -478,16 +478,16 @@ const RSVP = () => {
                             "Diremo che il regalo più grande sarà la vostra presenza... ma sapendo che non ci ascolterete..."
                         </p>
                         <p className="gift-message sans">
-                            Se volete aiutarci con la nostra luna di miele (o con le bollette che ci aspettano al ritorno!), 
+                            Se volete aiutarci con la nostra luna di miele (o con le bollette che ci aspettano al ritorno!),
                             potete farlo tramite un bonifico o, se preferite il metodo classico, lasciando una busta durante il ricevimento.
                         </p>
-                        
+
                         <div className="iban-section">
                             <div className="iban-label serif">Codice IBAN</div>
                             <div className="iban-box">
                                 <CreditCard size={18} className="text-gold" />
                                 <code id="iban-code" style={{ fontWeight: '800', fontSize: '0.95rem' }}>IT59 Y 03069 78634 10000 00060 08</code>
-                                <button 
+                                <button
                                     className="copy-btn"
                                     onClick={() => {
                                         navigator.clipboard.writeText('IT59Y0306978634100000006008');
@@ -516,7 +516,7 @@ const RSVP = () => {
                         </div>
 
                         {/* Honeymoon Image in the green card */}
-                        <motion.div 
+                        <motion.div
                             className="honeymoon-image-container"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -524,19 +524,19 @@ const RSVP = () => {
                             transition={{ delay: 0.5, duration: 1 }}
                             style={{ height: '220px', marginTop: '30px', overflow: 'hidden' }}
                         >
-                            <img 
-                                src={honeymoonPlane} 
-                                alt="Honeymoon travel" 
-                                className="honeymoon-plane-img" 
-                                style={{ 
-                                    width: '100%', 
-                                    height: '100%', 
-                                    objectFit: 'cover', 
-                                    objectPosition: 'center 30%' 
+                            <img
+                                src={honeymoonPlane}
+                                alt="Honeymoon travel"
+                                className="honeymoon-plane-img"
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center 30%'
                                 }}
                             />
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                             className="honeymoon-message-footer"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}

@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { Clock, MapPin, Music, Utensils, GlassWater, Church } from 'lucide-react';
 
 // Asset Imports
-import cathedralNew from '../assets/recursos/cathedral-new.jpg';
-import heroMatrimonio from '../assets/recursos/hero-matrimonio.webp';
-import aperitivoNew from '../assets/recursos/aperitivo-new.jpg';
-import cenaNew from '../assets/recursos/cena-new.jpg';
-import festaNew from '../assets/recursos/festa-new.jpg';
+import traniCatedral from '../assets/recursos/trani-catedral.jpg';
+import traniDesdeArriba from '../assets/recursos/trani-desde-arriba.jpg';
+import aperitivoCorte from '../assets/recursos/aperitivo-corte.jpg';
+import cenaGalaCorte from '../assets/recursos/cena-gala-corte.jpg';
+import tortaCorte from '../assets/recursos/torta-corte.jpg';
 import logoCbdg from '../assets/recursos/logo-cbdg.png';
 import marbleBg from '../assets/recursos/marble-texture.png';
 
@@ -18,7 +18,7 @@ const Matrimonio = () => {
       title: 'La Cerimonia',
       location: 'Cattedrale di Trani',
       description: 'Il momento del "Sì" in una cornice mozzafiato sospesa tra cielo e mare.',
-      image: cathedralNew,
+      image: traniCatedral,
       icon: <Church size={24} />,
       side: 'left'
     },
@@ -27,7 +27,7 @@ const Matrimonio = () => {
       title: 'Aperitivo di Benvenuto',
       location: 'Corte Bracco dei Germani',
       description: 'Iniziamo i festeggiamenti con bollicine e delizie pugliesi nei giardini della corte.',
-      image: aperitivoNew,
+      image: aperitivoCorte,
       icon: <GlassWater size={24} />,
       side: 'right'
     },
@@ -36,7 +36,7 @@ const Matrimonio = () => {
       title: 'Cena di Gala',
       location: 'Corte Bracco dei Germani',
       description: 'Un viaggio enogastronomico attraverso i sapori autentici della nostra terra.',
-      image: cenaNew,
+      image: cenaGalaCorte,
       icon: <Utensils size={24} />,
       side: 'left'
     },
@@ -45,7 +45,7 @@ const Matrimonio = () => {
       title: 'Taglio della Torta & Party',
       location: 'Corte Bracco dei Germani',
       description: 'La magia della torta sotto le stelle e poi... scateniamo il divertimento!',
-      image: festaNew,
+      image: tortaCorte,
       icon: <Music size={24} />,
       side: 'right'
     }
@@ -56,8 +56,8 @@ const Matrimonio = () => {
       {/* Cinematic Hero */}
       <section className="wedding-hero">
         <div className="hero-overlay"></div>
-        <img src={heroMatrimonio} alt="Il Matrimonio" className="hero-img-full" />
-        <motion.div 
+        <img src={traniDesdeArriba} alt="Il Matrimonio" className="hero-img-full" />
+        <motion.div
           className="hero-wedding-content"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,14 +71,14 @@ const Matrimonio = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="wedding-timeline" style={{ backgroundColor: '#FAF9F6' }}>
+      <section className="wedding-timeline" style={{ backgroundImage: `url(${marbleBg})` }}>
         <div className="container">
           <div className="timeline-container">
             {/* The vertical line */}
             <div className="timeline-line"></div>
 
             {events.map((event, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className={`timeline-item ${event.side}`}
                 initial={{ opacity: 0, x: event.side === 'left' ? -50 : 50 }}
@@ -93,7 +93,7 @@ const Matrimonio = () => {
                       <Clock size={16} /> {event.time}
                     </div>
                   </div>
-                  
+
                   <div className="timeline-text-box shadow-premium">
                     <div className="event-icon-circle">{event.icon}</div>
                     <h3 className="serif">{event.title}</h3>
@@ -101,7 +101,7 @@ const Matrimonio = () => {
                       <MapPin size={14} /> {event.location}
                     </div>
                     <p className="sans">{event.description}</p>
-                    
+
                     {event.location.includes('Corte Bracco') && (
                       <div className="venue-logo-mini">
                         <img src={logoCbdg} alt="Corte Bracco Logo" />
@@ -122,10 +122,10 @@ const Matrimonio = () => {
       <section className="video-full-section">
         <div className="video-background-container">
           <div className="video-foreground">
-            <iframe 
-              src="https://www.youtube.com/embed/H2YPykJyslY?autoplay=1&mute=1&controls=0&loop=1&playlist=H2YPykJyslY&modestbranding=1&playsinline=1&rel=0&showinfo=0" 
-              frameBorder="0" 
-              allow="autoplay; encrypted-media" 
+            <iframe
+              src="https://www.youtube.com/embed/H2YPykJyslY?autoplay=1&mute=1&controls=0&loop=1&playlist=H2YPykJyslY&modestbranding=1&playsinline=1&rel=0&showinfo=0"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
               allowFullScreen
               title="Corte Bracco Background Video"
             ></iframe>
@@ -148,7 +148,7 @@ const Matrimonio = () => {
       {/* Venue Detail Section */}
       <section className="venue-section">
         <div className="container text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="venue-branding"
@@ -158,13 +158,13 @@ const Matrimonio = () => {
             <p className="sans italic">Un’antica dimora, un’atmosfera senza tempo</p>
             <div className="divider-gold-center"></div>
             <p className="venue-desc max-w-700">
-              Sito in una posizione strategica tra le ridenti colline pugliesi, questo monastero del XVII secolo 
+              Sito in una posizione strategica tra le ridenti colline pugliesi, questo monastero del XVII secolo
               sarà la cornice del nostro ricevimento. Un luogo dove l'eleganza della pietra incontra il calore della nostra terra.
             </p>
-            <a 
-              href="https://www.google.com/maps/search/Corte+Bracco+dei+Germani" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://www.google.com/maps/search/Corte+Bracco+dei+Germani"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-gold-outline m-t-30"
             >
               Come Arrivare <MapPin size={16} className="m-l-10" />
@@ -239,6 +239,8 @@ const Matrimonio = () => {
         .wedding-timeline {
           padding: 120px 0;
           position: relative;
+          background-size: 400px;
+          background-repeat: repeat;
         }
 
         .timeline-container {

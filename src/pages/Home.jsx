@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import heroAtardecer from '../assets/recursos/trani-hero-atardecer.jpg';
+import trani4 from '../assets/recursos/trani-4.jpg';
 import storyVideo from '../assets/recursos/video_casa.mp4';
 import tilesBg from '../assets/recursos/azulejos.png';
 import houseBg from '../assets/recursos/casa fondo.png';
@@ -72,7 +72,7 @@ const Home = () => {
     <div className="home-page">
       <section className="hero">
         <div className="hero-bg-overlay"></div>
-        <img src={heroAtardecer} className="hero-img" alt="David y Giuliana Wedding" />
+        <img src={trani4} className="hero-img" alt="David y Giuliana Wedding" />
         
         <motion.div 
           className="hero-content" 
@@ -330,10 +330,10 @@ const Home = () => {
             <h2 className="story-title serif">L'inizio a Marbella</h2>
             <div className="story-text-wrapper">
               <p className="story-quote serif italic">
-                «Ci sono luoghi que custodiscono promesse e momenti che definiscono una vita. Per noi, quel luogo è Trani e quel momento è arrivato.»
+                «Ci sono luoghi che custodiscono promesse e momenti che definiscono una vita. Per noi, quel luogo è Trani e quel momento è arrivato.»
               </p>
               <p className="story-p">
-                Circondati dalla pietra bianca di Puglia e dall'azzurro infinito dell'Adriático, vogliamo dire il nostro ‘sì’ davanti alle persone che hanno dato un senso al nostro cammino. Più che un matrimonio, è la celebrazione di un'avventura che abbiamo iniziato insieme e che oggi, con la vostra compagnia, diventa eterna.
+                Circondati dalla pietra bianca di Puglia e dall'azzurro infinito dell'Adriatico, vogliamo dire il nostro ‘sì’ davanti alle persone che hanno dato un senso al nostro cammino. Più che un matrimonio, è la celebrazione di un'avventura che abbiamo iniziato insieme e che oggi, con la vostra compagnia, diventa eterna.
               </p>
             </div>
             <div className="story-signature script">David & Giuliana</div>

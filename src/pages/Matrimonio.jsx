@@ -71,7 +71,7 @@ const Matrimonio = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="wedding-timeline" style={{ backgroundImage: `url(${marbleBg})` }}>
+      <section className="wedding-timeline" style={{ backgroundColor: '#F9F7F2' }}>
         <div className="container">
           <div className="timeline-container">
             {/* The vertical line */}
@@ -300,7 +300,7 @@ const Matrimonio = () => {
           border-radius: 20px 20px 0 0;
           overflow: hidden;
           height: 250px;
-          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .event-img {
@@ -337,6 +337,7 @@ const Matrimonio = () => {
           border-radius: 0 0 20px 20px;
           position: relative;
           text-align: left;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
         .event-icon-circle {

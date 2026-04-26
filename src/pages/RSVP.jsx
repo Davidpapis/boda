@@ -420,7 +420,7 @@ const RSVP = () => {
                                                     <div className="checkbox-custom-box"></div>
                                                     <div className="checkbox-text">
                                                         <span className="serif">Servizio Navetta</span>
-                                                        <p className="sans text-xs">Riserva un posto sulla navetta per il matrimonio.</p>
+                                                        <p className="sans text-xs">Servizio disponibile solo dalla Cattedrale a Corte Bracco dei Germani.</p>
                                                     </div>
                                                 </label>
                                             </div>

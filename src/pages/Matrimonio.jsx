@@ -502,6 +502,9 @@ const Matrimonio = () => {
           .wedding-timeline {
             padding: 60px 0;
           }
+          .wedding-hero {
+            margin-top: 84px; /* Height of the mobile navbar */
+          }
         }
       `}</style>
     </div>

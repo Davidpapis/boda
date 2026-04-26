@@ -181,6 +181,7 @@ const Matrimonio = () => {
 
         .wedding-hero {
           height: 60vh;
+          margin-top: 124px; /* Height of the fixed navbar */
           position: relative;
           display: flex;
           align-items: center;

@@ -306,6 +306,16 @@ const Layout = () => {
       </footer>
 
       <style>{`
+        .layout-wrapper {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          width: 100%;
+        }
+        main {
+          flex: 1;
+          width: 100%;
+        }
         .navbar {
           background-color: rgba(85, 107, 47, 0.85) !important; 
           backdrop-filter: blur(10px);

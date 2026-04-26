@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import trani4 from '../assets/recursos/trani-4.jpg';
+import traniDesdeArriba from '../assets/recursos/trani-desde-arriba.jpg';
 import storyVideo from '../assets/recursos/video_casa.mp4';
 import tilesBg from '../assets/recursos/azulejos.png';
 import houseBg from '../assets/recursos/casa fondo.png';
@@ -72,7 +72,7 @@ const Home = () => {
     <div className="home-page">
       <section className="hero">
         <div className="hero-bg-overlay"></div>
-        <img src={trani4} className="hero-img" alt="David y Giuliana Wedding" />
+        <img src={traniDesdeArriba} className="hero-img" alt="David y Giuliana Wedding" />
         
         <motion.div 
           className="hero-content" 

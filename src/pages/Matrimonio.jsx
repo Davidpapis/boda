@@ -4,7 +4,7 @@ import { Clock, MapPin, Music, Utensils, GlassWater, Church } from 'lucide-react
 
 // Asset Imports
 import traniCatedral from '../assets/recursos/trani-catedral.jpg';
-import traniDesdeArriba from '../assets/recursos/trani-desde-arriba.jpg';
+import ilMatrimonio from '../assets/recursos/il-matrimonio.webp';
 import aperitivoCorte from '../assets/recursos/aperitivo-corte.jpg';
 import cenaGalaCorte from '../assets/recursos/cena-gala-corte.jpg';
 import tortaCorte from '../assets/recursos/torta-corte.jpg';
@@ -56,7 +56,7 @@ const Matrimonio = () => {
       {/* Cinematic Hero */}
       <section className="wedding-hero">
         <div className="hero-overlay"></div>
-        <img src={traniDesdeArriba} alt="Il Matrimonio" className="hero-img-full" />
+        <img src={ilMatrimonio} alt="Il Matrimonio" className="hero-img-full" />
         <motion.div
           className="hero-wedding-content"
           initial={{ opacity: 0, y: 50 }}
@@ -180,7 +180,7 @@ const Matrimonio = () => {
         }
 
         .wedding-hero {
-          height: 90vh;
+          height: 60vh;
           position: relative;
           display: flex;
           align-items: center;

@@ -278,9 +278,9 @@ const Trani = () => {
             <h2 className="serif">Dove Alloggiare</h2>
             <p>Abbiamo selezionato alcune strutture per voi per rendere il vostro soggiorno indimenticabile.</p>
             <div className="hotel-links">
-              <a href="https://www.hotelregia.it/" target="_blank" rel="noopener noreferrer" className="hotel-btn">Hotel Regia ★★★★</a>
+              <a href="https://www.palazzofilisio.it/" target="_blank" rel="noopener noreferrer" className="hotel-btn">Hotel Regia ★★★★</a>
               <a href="https://www.mareresort.it/" target="_blank" rel="noopener noreferrer" className="hotel-btn">Marè Resort</a>
-              <a href="https://www.palazzopaciotti.it/" target="_blank" rel="noopener noreferrer" className="hotel-btn">B&B Palazzo Paciotti</a>
+              <a href="https://bbtrani.com/" target="_blank" rel="noopener noreferrer" className="hotel-btn">B&B Palazzo Paciotti</a>
             </div>
             <p className="note">Suggeriamo di prenotare quanto prima per assicurarvi la disponibilità!</p>
           </motion.div>

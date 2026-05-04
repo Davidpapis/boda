@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import traniDesdeArriba from '../assets/recursos/trani-desde-arriba.jpg';
 import storyVideo from '../assets/recursos/video_casa.mp4';
 import tilesBg from '../assets/recursos/azulejos.png';
 import houseBg from '../assets/recursos/casa fondo.png';
@@ -14,10 +13,14 @@ const Home = () => {
     days: 0, hours: 0, minutes: 0, seconds: 0
   });
   const videoRef = useRef(null);
+  const heroVideoRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.7; // Slower speed
+    }
+    if (heroVideoRef.current) {
+      heroVideoRef.current.playbackRate = 0.5; // Half speed for hero video
     }
 
     const observer = new IntersectionObserver(
@@ -72,7 +75,17 @@ const Home = () => {
     <div className="home-page">
       <section className="hero">
         <div className="hero-bg-overlay"></div>
-        <img src={traniDesdeArriba} className="hero-img" alt="David y Giuliana Wedding" />
+        <video 
+          ref={heroVideoRef}
+          className="hero-img" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          disablePictureInPicture
+        >
+          <source src="https://videos.pexels.com/video-files/34759814/14736391_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
         
         <motion.div 
           className="hero-content" 
@@ -363,18 +376,7 @@ const Home = () => {
           height: 100%;
           object-fit: cover;
           z-index: 1;
-          image-rendering: high-quality;
           filter: brightness(1.05) contrast(1.1);
-          animation: kenBurns 25s infinite alternate ease-in-out;
-        }
-
-        @keyframes kenBurns {
-          0% {
-            transform: scale(1.05);
-          }
-          100% {
-            transform: scale(1.2);
-          }
         }
         .hero-bg-overlay {
           position: absolute;

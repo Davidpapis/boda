@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary and local files
+node-v20.11.1-darwin-x64*
+*.zip
+*.tar.gz
+src/fetch_pexels.py

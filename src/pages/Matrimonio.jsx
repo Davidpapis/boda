@@ -56,7 +56,7 @@ const Matrimonio = () => {
       {/* Cinematic Hero */}
       <section className="wedding-hero">
         <div className="hero-overlay"></div>
-        <img src={ilMatrimonio} alt="Il Matrimonio" className="hero-img-full" />
+        <img src={ilMatrimonio} alt="Il Matrimonio" className="hero-img-full ken-burns" />
         <motion.div
           className="hero-wedding-content"
           initial={{ opacity: 0, y: 50 }}

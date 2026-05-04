@@ -69,6 +69,7 @@ const Trani = () => {
     <div className="trani-page">
       {/* Hero Header */}
       <header className="trani-hero">
+        <img src="/images/trani/hero.png" alt="Trani" className="hero-img ken-burns" />
         <div className="hero-overlay">
           <div className="container">
             <motion.div
@@ -290,21 +291,29 @@ const Trani = () => {
           .trani-page { background: var(--color-bg); padding-bottom: 100px; overflow-x: hidden; }
           .trani-hero {
             height: 100vh;
-            background-image: url('/images/trani/hero.png');
-            background-size: cover;
-            background-position: center;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            overflow: hidden;
+          }
+          .trani-hero .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
           }
           .hero-overlay {
             position: absolute; top:0; left:0; width:100%; height:100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.2), rgba(0,0,0,0.5));
             display: flex; align-items: center; justify-content: center;
             flex-direction: column;
+            z-index: 2;
           }
           .divider-gold { width: 80px; height: 2px; background: var(--color-gold); margin: 20px auto; }
           .trani-hero h1 { font-size: 8rem; line-height: 0.9; margin: 0; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }

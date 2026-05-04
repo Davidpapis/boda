@@ -75,6 +75,16 @@ button {
   100% { stroke-dashoffset: 0; }
 }
 
+@keyframes kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.ken-burns {
+  animation: kenburns 15s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 /* --- BOTÓN VERDE --- */
 .btn-green {
   background-color: var(--color-green);

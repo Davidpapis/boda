@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import confetti from 'canvas-confetti';
+import heroBg from '../assets/recursos/home_trani.webp';
 import storyVideo from '../assets/recursos/video_casa.mp4';
 import tilesBg from '../assets/recursos/azulejos.png';
 import houseBg from '../assets/recursos/casa fondo.png';
@@ -75,17 +76,11 @@ const Home = () => {
     <div className="home-page">
       <section className="hero">
         <div className="hero-bg-overlay"></div>
-        <video 
-          ref={heroVideoRef}
-          className="hero-img" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          disablePictureInPicture
-        >
-          <source src="https://videos.pexels.com/video-files/34759814/14736391_1920_1080_30fps.mp4" type="video/mp4" />
-        </video>
+        <img 
+          src={heroBg} 
+          className="hero-img ken-burns" 
+          alt="David & Giuliana"
+        />
         
         <motion.div 
           className="hero-content" 
